@@ -47,11 +47,22 @@ public class TicTacToeGame extends JFrame implements ActionListener {
             playerX = !playerX;
 
             if (checkForWin()) {
-                JOptionPane.showMessageDialog(this, (playerX ? "O" : "X") + " wins!");
-                resetGame();
+                int i = JOptionPane.showConfirmDialog(this, "Would you like to play again?", (playerX ? "O" : "X") + " wins!", JOptionPane.YES_NO_OPTION);
+                if (i == 0) {
+                    resetGame();
+                } else if (i == 1){
+                    JOptionPane.showMessageDialog(this, (playerX ? "O" : "X") + " Congrats on the win, goodbye!");
+                    System.exit(0);
+                }
             } else if (isBoardFull()) {
-                JOptionPane.showMessageDialog(this, "It's a draw!");
-                resetGame();
+                int n = JOptionPane.showConfirmDialog(this, "Would you like to play again?", "It's a tie!", JOptionPane.YES_NO_OPTION);
+                if (n == 0) {
+                    resetGame();
+                } else if (n == 1){
+                    JOptionPane.showMessageDialog(this, "Goodbye!");
+                    System.exit(0);
+                }
+
             }
         }
     }
